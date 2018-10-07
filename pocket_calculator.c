@@ -24,10 +24,10 @@ int menu() {
 }
 
 void readInput(double* num1, double* num2) {
-  printf("Enter first operand: \n");
-  scanf("%lf", &num1);
-  printf("Enter second opernad: \n");
-  scanf("%lf", &num2);
+  printf("Enter first operand: ");
+  scanf("%lf", num1);
+  printf("Enter second opernad: ");
+  scanf("%lf", num2);
 }
 
 double add(double num1, double num2) {
@@ -38,33 +38,55 @@ double subtract(double num1, double num2) {
   return num1 - num2;
 }
 
-int main(int argc, char const *argv[]) {
-  int choice;
-  double num1 = 0;
-  double num2 = 0;
-  double sum;
+double multiply(double num1, double num2) {
+  return num1 * num2;
+}
 
-  choice = menu();
-  readInput(&num1, &num2);
-
-  switch (choice) {
-    case 1:
-    sum = add(num1, num2);
-    break;
-
-    case 2:
-    sum = subtract(num1, num2);
-    break;
-    case 3:
-
-    break;
-    case 4:
-
-    break;
-    case -1:
-
-    break;
+double divide(double num1, double num2) {
+  if(num2 == 0)
+  {
+    printf("Division by 0\n");
+    return -1;
   }
-  printf("%fl \n", sum);
+  else
+  {
+    return num1 / num2;
+  }
+
+}
+
+int main(int argc, char const *argv[]) {
+  int choice = -1;
+  double num1;
+  double num2;
+  double res;
+  do {
+    choice = menu();
+    if(choice != -1)
+    {
+      readInput(&num1, &num2);
+    }
+    switch (choice) {
+      case 1:
+      res = add(num1, num2);
+      break;
+      case 2:
+      res = subtract(num1, num2);
+      break;
+      case 3:
+      res = multiply(num1, num2);
+      break;
+      case 4:
+      res = divide(num1, num2);
+      break;
+      case -1:
+      printf("Program ended\n");
+      break;
+    }
+    if(choice != -1)
+    {
+      printf("%fl \n", res);
+    }
+  } while(choice != -1);
   return 0;
 }
