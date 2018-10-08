@@ -12,14 +12,12 @@ int menu() {
     printf("  End program(-1)\n");
     printf("Enter your choice: ");
     scanf("%d", &choice);
-
     while(choice < -1 || choice > 4)
     {
         printf("Input not allowed, please try again\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
     }
-
     return choice;
 }
 
@@ -31,18 +29,36 @@ void readInput(double* num1, double* num2) {
 }
 
 double add(double num1, double num2) {
-  return num1 + num2;
+  if(num1 - DBL_MAX < num2)
+  {
+    printf("NUMBER OVERFLOW\n");
+    return -1;
+  }
+  else
+  {
+    return num1 + num2;
+  }
 }
 
 double subtract(double num1, double num2) {
-  return num1 - num2;
+  if(num1 + DBL_MIN < num2)
+  {
+    printf("NUMBER UNDERFLOW\n");
+    return -1;
+  }
+  else
+  {
+    return num1 - num2;
+  }
 }
 
 double multiply(double num1, double num2) {
+  // over/underflow
   return num1 * num2;
 }
 
 double divide(double num1, double num2) {
+  // over/underflow
   if(num2 == 0)
   {
     printf("Division by 0\n");
@@ -52,7 +68,6 @@ double divide(double num1, double num2) {
   {
     return num1 / num2;
   }
-
 }
 
 int main(int argc, char const *argv[]) {
