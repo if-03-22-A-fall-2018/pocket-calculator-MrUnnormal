@@ -34,6 +34,11 @@ double add(double num1, double num2) {
     printf("NUMBER OVERFLOW\n");
     return -1;
   }
+  else if(num1 + DBL_MIN < num2)
+  {
+    printf("NUMBER UNDERFLOW\n");
+    return -1;
+  }
   else
   {
     return num1 + num2;
@@ -41,11 +46,11 @@ double add(double num1, double num2) {
 }
 
 double subtract(double num1, double num2) {
-  if(num1 + DBL_MIN < num2)
+  if(DBL_MIN - num2 > num1)
   {
     printf("NUMBER UNDERFLOW\n");
     return -1;
-  }
+  }// Overflow not possible
   else
   {
     return num1 - num2;
