@@ -1,3 +1,19 @@
+/*----------------------------------------------------------
+ *				HTBLA-Leonding / Class: <your class>
+ * ---------------------------------------------------------
+ * Exercise Number: 0
+ * Title:			<title of the assignment>
+ * Author:			<your name>
+ * ----------------------------------------------------------
+ * Description:
+ * <some brief description, what the program does: example:
+ * Calculates a pyramid of numbers, i.e., it multiplies a big
+ * integer by the number 2, its result by 3, etc. and then
+ * returns to the original value by subsequently dividing,
+ * again starting by 2, 3, etc.>
+ * ----------------------------------------------------------
+ */
+
 #include "stdio.h"
 #include "float.h"
 
@@ -46,7 +62,7 @@ double add(double num1, double num2) {
 }
 
 double subtract(double num1, double num2) {
-  if(DBL_MIN - num2 > num1)
+  if(DBL_MIN - num1 > num2)
   {
     printf("NUMBER UNDERFLOW\n");
     return -1;
@@ -58,12 +74,20 @@ double subtract(double num1, double num2) {
 }
 
 double multiply(double num1, double num2) {
-  // over/underflow
+  if((num1 * num2) / num2 != num1)
+  {
+    printf("NUMBER OVERFLOW\n");
+    return -1;
+  }
   return num1 * num2;
 }
 
 double divide(double num1, double num2) {
-  // over/underflow
+  if((num1 / num2) * num2 != num1)
+  {
+    printf("NUMBER UNDERFLOW\n");
+    return -1;
+  }
   if(num2 == 0)
   {
     printf("Division by 0\n");
